@@ -1,0 +1,176 @@
+
+.div-video{
+  top: 0%;
+  left: 0%;
+  height: 300px;
+  width: 602px; /* tambien puede ser con 100% */
+  overflow: hidden;
+}
+
+video.fillWidth {
+  width: 100%;
+}
+
+#encabezado{
+    color: #ffffff;
+    /* background-color: #d32f2f;
+    width: 602px;
+    height: 60px;*/
+    width: 402px;
+    display: flex;
+    float: left;
+    position:absolute;
+    margin-left: 80px; 
+    margin-top: 110px;
+    text-align: center;
+}
+
+#buscador{
+    width : 600px;
+}
+
+#div-combo-buscar{
+    width: 505px;
+    height: 60px;
+    margin-left: 5px; 
+    margin-top: 14px;
+    display: flex;
+    align-items: center;
+    float: left;
+}
+
+#input-buscar{
+    margin: .10rem 0;
+}
+
+#div-boton-buscar{
+    height: 60px;
+    margin-right: 5px;
+    margin-top: 14px;
+    display: flex;
+    align-items: center;
+    float: right;
+}
+
+
+#tabla{
+    border: 2px outset;
+    border-width: 1px; 
+    width : 602px;
+}
+
+#tabla-series{ 
+    width : 600px;
+    margin: 2;
+    border: 1;
+    border-color: black;
+}
+
+.fila-seleccionada{
+    color: #ffffff;
+    background: #d32f2f;
+    
+}
+
+#alerta-series{
+    font-size: small;
+}
+
+#temporadas{
+    text-align: center;
+    width : 110px;
+}
+
+#tempVistas{
+    text-align: center;
+    width : 110px;
+    
+}
+#temporada-lista{
+    text-align: center;
+}
+
+#tempVistas-lista{
+    text-align: center;
+}
+
+#botones{
+    width : 600px;
+}
+
+#boton-menos {
+    width: 30px
+}
+
+#mas-menos{
+    margin-left: 5px;
+    margin-top: 5px;
+    width: 80px;
+    height: 40px;
+    float: left;
+    align-items: center;
+}
+
+#boton-nueva{
+    height: 40px;
+    margin-right: 5px;
+    margin-top: 5px;
+    float: right;
+}
+
+#avisos-principales{
+    width: 400px;
+    height: 30px;
+    float:inherit;
+    margin-left: 120px;
+}
+
+#pie{
+    width : 603px;
+    height: 80px;
+    color: #ffffff;
+    background: #d32f2f;
+    clear: both;
+}
+
+.pie-iconos {  
+    display: grid;
+    grid-template-columns: 3.1fr 0.3fr 0.3fr 0.3fr;
+    grid-template-rows: 0.3fr 1.7fr 1fr;
+    gap: 0px 0px;
+    grid-auto-flow: row;
+}
+
+.iconos-pie-pagina { 
+    grid-area: 1 / 1 / 2 / 5; 
+    margin-left: 10px;
+    font-size: small;
+    margin-top: 5px;
+}
+
+.instagram-iconos { grid-area: 1 / 2 / 2 / 3; }
+
+.facebook-iconos { grid-area: 1 / 3 / 2 / 4; }
+
+.youtube-iconos { grid-area: 1 / 4 / 2 / 5; }
+
+.info-area-iconos { grid-area: 1 / 1 / 2 / 2; }
+
+
+#div-modal-nueva-serie{
+    width: 400px;
+}
+
+#div-modal-editar-serie{
+    width: 400px;
+}
+
+.modal-nueva-col1{
+    width: 150px;
+    height: 50px;
+}
+
+.modal-nueva-col2{
+    width: 200px;
+    height: 50px;
+}

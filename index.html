@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+    <!-- 1er Parcial interface usuario - UNAHUR - Alumno: Raul Gutierrez -->
+    <link rel="stylesheet" href="" >
+	<title> Tus series </title>
+    <link rel="stylesheet" href="estilos.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+<body>
+        
+    
+        <div class="pantalla-tus-series">
+    
+            <div id="encabezado">
+                <h1 class="titulo"> Las series que mas te gustan </h1>
+            </div>
+            
+            <div class="div-video">
+                <video autoplay muted loop class="fillWidth visible-lg">
+                    <source src="https://morning-shelf-6185.herokuapp.com/assets/2015-01-01-bokeh-6e0d97b003dff1c88b95db3126cd4788.mp4" type="video/mp4"/>
+                        Video no disponible. Controle su conexion de internet.
+                </video>
+                
+            </div>
+            
+            
+            <div id="buscador">
+                <div id="div-combo-buscar"> 
+                    <input id="input-buscar" type="text" placeholder="Ingresa la serie que quieres buscar" size="63"/> 
+                </div>
+                <div id="div-boton-buscar">
+                    <button id="boton-buscar" class="btn btn-outline-danger" onclick="buscarSerie()"> Buscar </button>
+                </div>
+            </div>
+        
+        <div id="listado-tus-series">
+            <div id="tabla">
+                <table id="tabla-series" class="table table-striped">
+                    <tr>
+                        <th id="id">  </th>
+                        <th id="nombre"> Nombre </th>
+                        <th id="temporadas"> Temporadas </th>
+                        <th id="tempVistas"> Temp. vistas </th>
+                    </tr>
+                    
+                </table>
+            </div>
+            <div id="botones">
+                <div id="mas-menos" role="group" aria-label="Basic example">
+                    <button id="boton-mas" type="button" class="btn btn-outline-danger btn-sm" onclick="sumarTemporadasVistas()"> + </button>
+                    <button id="boton-menos" class="btn btn-outline-danger btn-sm" type="button" onclick="restarTemporadasVistas()"> - </button>
+                </div>
+                <div id="boton-nueva">
+                    <button id="boton-crear" type="button" class="btn btn-outline-danger btn-sm" data-bs-toggle="modal" data-bs-target="#modal-crear-series"> Nueva </button>
+
+                    <button id="boton-editar" type="button" class="btn btn-outline-danger btn-sm" data-bs-toggle="modal" data-bs-target="#modal-editar-series" onclick="abrirEditarSerie()"> Editar </button>
+                </div>
+            </div>
+        </div>
+        
+        <div id="avisos-principales">
+                <div id="alerta-nice-series-busqueda" ></div>    
+        </div> 
+
+        <div id="pie">
+            <div class="pie-iconos">
+                  <div class="iconos-pie-pagina">Parcial: CIU - Raul A. Gutierrez - UNAHUR - Año 2022</div>
+                  <div class="instagram-iconos"><a href="https://www.instagram.com/"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAYpJREFUSEvNlT0sREEUhb9TkmhWqyVRKam1tFqtRKLQyqqITqiEEqVaS6PQUlLSrpLyypGZzXhr7WxisyZ5ecnMnXvOuX8jRrw0Yv+MByAipoEVYCZ9vwl9BfzdSPL/2+pREBFLwHqyegbek4OfQExgEphNhxeS7kvDbwAR4Qs7gB2fSvqoyVFSvJHUHpRKmgBmvgC0a5xHxCKwCpjIGbAH3Eu6yMSaAPtAR9JRk3lEGNgKvV4kPUbEPLAFvElqR8Q20JK02w/gBLiVdJUNImIC8MXsPB89AXeJ/ZRjnwBmJW3+BnAt6boAcE5cVU7gg/eTGofTSo4LWxOpB0iOnLyz7Lxwlquteza0gohwL6yUkhuhOwS6iv8lgCtndCFKCc1JPndppj3Hf80dXpZ0bYhqy7Sn22sAahvNzL9KtlwJYNpN168PhhoVDefulYGjIg87d+mlpM6fDrsigXlcG8iDrGfOJ+A8pueqxnXRRFayDPhia4AKEzARN9zgB6cmJMPYjOdNHobhINtPm7P6GTNrH5cAAAAASUVORK5CYII="/></a> </div>
+                  <div class="facebook-iconos"><a href="https://about.facebook.com/ltam/meta/"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAblJREFUSEvtVStMQ0EQnJEgwWLBYrFgsWCxJCiwUBQf2yoSbC21tUW2FmSxWGqRQ6a5u+y7vqaGul7S9L3rzczu7O6VWPPimvmxEVjp8FKLJB0A2E8MXySnkU3SFoATAP6ekvxsU1sQSMBbALsVYERy4D1JhwAuEnk+9gugS/I74hoCifwGwB4AAz6SUM5kAmAEwAGYyII/AI4AnKbnZ5LGzlct4EP+zAA85YOSTOCIY7SdSCTJdp0BmJDsLwik6B9T2n2SjrasSmRA0pk0lqSML+Ilg0AwI9lpAdv3y7RvWxpWpNpkB0oAUcBgk7yTfGvpGPu+nfbdOUOSw+qca+dz7rpuowaSXFwX85WkixvtOQdwbNK06Ui97kk6m3j2ZZmAf/DqxZ5P83AdC5+83kn932sRAMmrOoMFgWomSuGDqDkaDSFpztMmYO/sYSmQJLemW7R4mqOVlGtWBkySh/PB2eZGiUXOHWDAOIn5uvC7O6b22oW+A2CrMsZNYpHSKFHAgDzFOdDW8Q9ZOGNjjM3LE+4rYz7NbVdFjmJ+VdSRx4L6OVx6jtzk46VXRQ3+j/fNP9pKF9du0R+TUdQZkrn6LgAAAABJRU5ErkJggg=="/></a></div>
+                  <div class="youtube-iconos"><a href="https://www.youtube.com/"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAPxJREFUSEvtlS1vAlEQRc+VRRZbCxZbW2w1EmwTFATXP1EUCbY/pLXY2mLRyCKHDOwjZQOZx2bXsfbN3JO587Gi4U8N63MHhA6fWWRmXeAFeABawFOocAz4LeK2wJekTco7AQrxSaZgFDaXdID+B7wBvSgz8/1H0rIMmAKdTIEobC3powxYBFlzYAQ8RuoHYWl8EyAlmNkr0C8G4SqrMsAVzcynbAA8XyPUAUiVXGRUBpiZ2+PiXkV9FgHe5CHQzmjyTtKs3OT3GzY3Ylwc0zoXbSXps1yB36HmTkUxfg7x0Us+5262H7cd8Ad8pzt0VkFkatX3+x8tdK5xi/Zv61gZ8JJfFgAAAABJRU5ErkJggg=="/></a></div>
+                  <div class="info-area-iconos"></div>
+            </div>
+        </div>
+        
+            
+        <div id="modales">
+        
+            <!-- Modal: nueva serie -->
+                    <div class="modal fade" id="modal-crear-series" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                          <div class="modal-dialog">
+                            <div id="div-modal-nueva-serie" class="modal-content">
+                              <div class="modal-header">
+                                <h5 class="modal-title" id="staticBackdropLabel"> Nueva serie </h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                              </div>
+                              <div class="modal-body">
+                                    <table class="modal-tabla-datos">
+                                        <tr>
+                                            <td class="modal-nueva-col1"><label for="nueva-serie-nombre"> Nombre </label></td>
+                                            <td class="modal-nueva-col2"><input id="nueva-serie-nombre" type="text" placeholder="de la serie" /></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="modal-nueva-col1"> <label for="nueva-serie-temporadas"> Temporadas </label> </td>
+                                            <td class="modal-nueva-col2"><input id="nueva-serie-temporadas" type="number" placeholder="ingresa cuantas tiene"/></td>
+                                        </tr>
+                                    </table>
+                                  
+                              </div>
+                            
+                              <div id="alerta-nice-series-nuevas" ></div> 
+                            
+                              <div class="modal-footer">
+
+                                <button type="button" class="btn btn-outline-danger" onclick="nuevaSerie()"> Crear </button>
+
+                                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal"> Cerrar </button>
+
+                              </div>
+                            </div>
+                          </div>
+                    </div>
+            
+            <!-- Modal: editar series -->
+                    <div class="modal fade" id="modal-editar-series" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                          <div class="modal-dialog">
+                            <div id="div-modal-editar-serie" class="modal-content">
+                              <div class="modal-header">
+                                <h5 class="modal-title" id="staticBackdropLabel"> Editar series </h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                              </div>
+                              <div class="modal-body">
+                                  <table class="modal-tabla-datos">
+                                    <tr>
+                                        <td class="modal-nueva-col1"> <label for="nombre"> Nombre </label></td>
+                                        <td class="modal-nueva-col2"><input id="editar-nombre-serie" type="text" /></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="modal-nueva-col1"><label for="temporadas"> Temporadas </label> </td>
+                                        <td class="modal-nueva-col2"><input id="editar-temporadas-serie" type="number" /></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="modal-nueva-col1"><label for="vistas"> Vistas </label> </td>
+                                        <td class="modal-nueva-col2"><input id="editar-tempvistas-serie" type="number" /></td>
+                                    </tr>
+                                  </table>
+                              </div>
+                                
+                              <div id="alerta-nice-series-editadas" ></div>  
+                                
+                              <div class="modal-footer">
+                                
+                                <button id="boton-modal-editar" type="button" class="btn btn-outline-danger" onclick="editarSerie()"> Editar </button>
+                                  
+                                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal" onclick="vaciarCombosEditar()"> Cerrar </button>
+                                  
+                              </div>
+                            </div>
+                          </div>
+                    </div>
+            
+        </div>
+        
+    </div>
+    <script src="scripts.js"></script>
+</body>
+    
+</html>
